@@ -16,14 +16,32 @@ namespace Filehandling
         }
 
         public static void Override(string path, Person contents)
-        {            
-            string jsonData=JsonSerializer.Serialize(contents);
+        {
+            List<Person> obj = new(){ contents };
+            string jsonData=JsonSerializer.Serialize(obj);
             File.WriteAllText(path, jsonData);
         }
 
         public static void Append(string path,Person contents)
         {
-            
+            List<Person> obj = new List<Person>();
+            obj.Add(contents);
+
+            string json=File.ReadAllText(path);
+
+            obj = JsonSerializer.Deserialize<List<Person>>(json);
+
+            obj.Add(contents);
+
+            string updatedjson=JsonSerializer.Serialize(obj);
+
+            File.WriteAllText(path, updatedjson);
+
+
         }
     }
 }
+
+
+//delegates and events
+//custom annotations,custom reflections

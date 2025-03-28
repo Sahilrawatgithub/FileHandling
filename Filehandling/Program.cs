@@ -25,6 +25,7 @@
             Person p = new Person("sahil", 21, "mohali");
             JsonFileHandling.Override(jsonvpath,p );
 
+            JsonFileHandling.Append(jsonvpath,new Person("Abhishek",22,"Ziakpur"));
 
         }
     }
